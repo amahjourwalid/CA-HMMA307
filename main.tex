@@ -1,0 +1,101 @@
+\documentclass[unknownkeysallowed]{beamer}
+\usepackage[french,english]{babel}
+\input{Beamer_js}
+\input{shortcuts_js}
+%\usepackage{./OrganizationFiles/tex/sty/shortcuts_js}
+\usepackage{csquotes}
+
+\graphicspath{{./images/}}
+
+\addbibresource{Bibliographie.bib}
+\usepackage{enumerate}
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%             Headers               %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[noframenumbering]
+\thispagestyle{empty}
+\bigskip
+\bigskip
+\begin{center}{
+\LARGE\color{marron}
+\textbf{HMMA 307 : Advanced Linear Modeling}
+\textbf{ }\\
+\vspace{0.5cm}
+}
+
+\color{marron}
+\textbf{Chapter 5 : Random Effects Models}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\textbf{ISKOUNEN SELENA \ AMAHJOUR WALID \ RUDOLF RÖMISCH } \\
+\vspace{0.1cm}
+\url{https://github.com/selenaiskounen/CA-HMMA307}\\
+\vspace{0.5cm}
+Université de Montpellier \\
+\end{center}
+
+\centering
+\includegraphics[width=0.13\textwidth]{Logo.pdf}
+\end{frame}
+
+\begin{frame}{Motivation}
+We consider cases where we get random samples from large populations. 
+Since the goal is to make statements about properties of whole populations and not about observed individuals, it is rather natural to assume random samples. 
+Now we elaborate an example with machines. We assume that we assess the quality of produced samples from some machines.
+
+\end{frame}
+\begin{frame}{Model}
+Our model:
+
+$$
+Y_{ij} = \mu + \alpha_i + \epsilon_{ij}
+$$
+Here we have the following variables and assumptions:
+\begin{itemize}
+    \item $Y_{ij}$ as the quality of the j-th sample on the i-th machine 
+    \item $\mu$ as the global mean
+    \item $\alpha_i$ i.i.d.  
+    $\sim \mathcal{N}(0,\sigma^2_{\alpha})$ as the effect of the i-th machine
+    \item $\epsilon_{ij}$ i.i.d. $\sim \mathcal{N}(0,\sigma^2)$ as the error term for the j-th sample and the i-th machine
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Specialty}
+    The model has strong similarities with the fixed models. But the $\alpha_i's$ are random variables and not fixed unkown parameters.
+    With that change the properties of the model will be strongly influenced.
+    \begin{itemize}
+        \item We get the new parameter $\sigma^2_{\alpha}$
+        \item Our model is also called variance components models since we have now two different variances $\sigma^2_{\alpha}$ and $\sigma^2$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties}
+    We consider some properties for our model:
+    \begin{itemize}
+        \item The expected value of $Y_{ij}$ is $E[Y_{ij}]=\mu$, since $E[Y_{ij}] = E[\mu + \alpha_i + \epsilon_{ij}] = E[\mu] + E[\alpha_i] + E[\epsilon_{ij}] = \mu$
+        \item The variance is $Var(Y_{ij}) = \sigma^2_{\alpha} +\sigma^2$ since
+        
+        $Var(Y_{ij}) = E[Y_{ij}^2] - E[Y_{ij}]^2
+        = E[\mu^2] + E[\mu \alpha_i] + E[\mu \epsilon_{ij}] + E[\alpha_i \mu] + E[\alpha_i \alpha_i] + E[\alpha_i \epsilon_{ij}] + E[\epsilon_{ij} \mu] + E[\epsilon_{ij}\alpha_i] + E[\epsilon_{ij}\epsilon_{ij}] - \mu^2
+        = \mu^2 + \mu \underbrace{E[\alpha_i]}_\text{= 0} + \mu \underbrace{E[\epsilon_{ij}]}_\text{= 0} + \underbrace{E[\alpha_i]}_\text{=0}\mu + E[\alpha_i^2] + \underbrace{E[\alpha_i]}_\text{= 0}\underbrace{E[\epsilon_{ij}]}_\text{= 0} + \underbrace{E[\epsilon_{ij}]}_\text{=0}\mu + \underbrace{E[\epsilon_{ij}]}_\text{=0} \underbrace{E[\alpha_i]}_\text{=0} + E[\epsilon_{ij}^2] - \mu^2 
+        = E[\alpha_i^2] + E[\epsilon_{ij}^2]
+        = \sigma^2_{\alpha} + \sigma^2$
+    \end{itemize}
+\end{frame}
+
+
+
+
+
+\end{document}
