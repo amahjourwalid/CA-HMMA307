@@ -122,7 +122,59 @@ Here we have the following variables and assumptions:
 	Parameter estimation for the variance components $\sigma^2_{\alpha}$ and $\sigma^2$ is typically being done with a technique called restricted maximum likelihood (REML).\\
 	It is also possible to use the "classical" maximum-likelihood estimator but REML estimates are less biased. The parameter $\mu$ is estimated with maximum-likelihood assuming that the variances are known. 
 \end{frame}
-\subsection{More than one Factor}
+
+\begin{frame}
+	Now we will consider the study of beef animals. Five sires (males) were each mated to a separate group of dams (females). Here we see the plot of sires to their birthweight:
+	\begin{figure}
+			\centering
+			\includegraphics[[width=6cm]{sire_weight.pdf}
+			\caption{Sire on Birthweight}
+			\label{fig:my_label}
+	\end{figure}
+		
+	
+\end{frame}
+
+
+\begin{frame}
+	Here we have a summary of our fitted model in a table.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{model_fit.pdf}
+		\caption{Fitted Model}
+		\label{fig:my_label}
+	\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+	Additionally we want to check the model assumptions. This includes in addition normality of the random effects.
+		\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{res_fit.pdf}
+		\caption{Model Check}
+		\label{fig:my_label}
+	\end{figure}
+\end{frame}
+
+	
+
+
+\begin{frame}
+	Furthermore we want to see the random effects and the residuals and for that we need to extract them and get:
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{res_randeff.pdf}
+		\caption{Comparison Random effects and Residuals}
+		\label{fig:my_label}
+	\end{figure}
+	
+\end{frame}
+
+
+\subsection{Two-Way ANOVA}
 \begin{frame}
 	Now we can extend our model to the two-way ANOVA situation.\\
 	As an example we have a manufacturer who is developing a new spectrophometer for medical labs. A critical issue is consistency of measurements from day to day among different machines. The response is the triglyceride level [mg/dl] of a sample.
@@ -145,12 +197,37 @@ Here we have the following variables and assumptions:
 	\end{itemize}
 \end{frame}
 
-\subsection{Nesting}
-\begin{frame}{Motivation}
-	Now we introduce a new concept. We consider the strength of a chemical paste product which was measured for a total of sixty samples coming from ten randomly selected delivery batches each containing three randomly selected casks. Now we can find a new way of combining factors. Cask one in batch 1 has nothing to do with cask one in batch two and so on. The "1" of cask has a different meaning for every batch. Hence, cask and batch are not crossed. We say cask is nested in batch.\\
-	The battch effect does not seem to be very pronounced. On the other side, casks within the same batch can be substantially different. Let us now model this with appropriate random effects.
+\begin{frame}
+	We want to visualize the effects of the interaction term $(\alpha \beta)_{ij}$ and plot an interaction plot.
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm]{mean_of_response.pdf}
+		\caption{Interaction between $\alpha$ and $\beta$}
+		\label{fig:my_label}
+	\end{figure}
 \end{frame}
 
+
+
+\subsection{Nesting}
+\begin{frame}{Motivation}
+	Now we introduce a new concept. \\ We consider the strength of a chemical paste product which was measured for a total of sixty samples coming from ten randomly selected delivery batches each containing three randomly selected casks. Now we can find a new way of combining factors. Cask one in batch 1 has nothing to do with cask one in batch two and so on. The "1" of cask has a different meaning for every batch. Hence, cask and batch are not crossed. We say cask is nested in batch.
+	
+\end{frame}
+
+\begin{frame}
+	Here we have a specific plot. \\ The batch effect does not seem to be very pronounced. On the other side, casks within the same batch can be substantially different. Let us now model this with appropriate random effects.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{cask_strength.pdf}
+		\caption{Cask on Strength}
+		\label{fig:my_label}
+	\end{figure}
+
+	
+\end{frame}
 
 \begin{frame}{Nesting: Model}
 	We can use the model:
@@ -174,7 +251,7 @@ Here we have the following variables and assumptions:
 	In reality there can be encounters with models which contain both random and fixed effects. \\ We call them mixed effects models.\\
 	To model this new concept we consider two examples. One is Data on an experiment to compare three brands of machines used in an industrial process. The other one is about two groups of raters who rated four different cheese types. Every rater got to eat two samples from the same cheese type in random order.
 \end{frame}
-
+\subsection{Machine Example}
 \begin{frame}{Machine Model}
 	
 	In this model we assume that there is a population effect, where each worker is allowed to have its own (random) deviation.
@@ -196,7 +273,7 @@ Here we have the following variables and assumptions:
 \begin{frame}{Interpretation}
 	Here we have a special situation. The "average" (over the whole population) productivity "profile" iwth respect to the different machines is given by the fixed effect $\alpha_i$. The (random) deviation of an individual worker consists of a general shift $\beta_j$ (worker specific general productivity level) and a worker specific "preference" $(\alpha \beta)_{ij}$ with respect to the machines.
 \end{frame}
-
+\subsection{Cheese Example}
 \begin{frame}{Cheese Model}
 	For the cheese type example we have the following model:
 	\begin{equation*}
@@ -216,65 +293,64 @@ Here we have the following variables and assumptions:
 	In this example we have an "average" (over the whole population) preference "profile" with respecht to the different cheese types but every rater can have its own random deviation of this "profile". This deviation consists of a general shift $\delta_{k(i)}$ (general cheese liking of a rater) and a rater specific preference $(\beta \delta)_{jk(i)}$ with respect  to the cheese types.
 \end{frame}
 
+\section{03 Analysis in Occitania}
 \begin{frame}{Example: Rates of O3 in Occitania}
-
-The goal of this data analysis is to find out if there is a significant difference in O3 levels between Montpellier, Toulouse, Perpignan and Albi. 
-
-\vspace{0.2cm}
-
-Consider the following notations:
-\begin{itemize}
-\item{$\mu_m$ = mean of O3 rate in Montpellier.}
-\item{$\mu_t$ = mean of O3 rate in Toulouse}
-\item{$\mu_p$ = mean of O3 rate in Perpignan}
-\item{$\mu_a$ = mean of O3 rate in Albi}
-\end{itemize}
-
-\vspace{0.2cm}
-
-In this case, we are going to do an ANOVA to test:
-$H_0:\mu_m=\mu_t=\mu_p=\mu_a$ VS $H_1:\mu_m \neq \mu_t \neq \mu_p \neq \mu_a$
+	
+	The goal of this data analysis is to find out if there is a significant difference in O3 levels between Montpellier, Toulouse, Perpignan and Albi. 
+	
+	\vspace{0.2cm}
+	
+	Consider the following notations:
+	\begin{itemize}
+		\item{$\mu_m$ = mean of O3 rate in Montpellier.}
+		\item{$\mu_t$ = mean of O3 rate in Toulouse}
+		\item{$\mu_p$ = mean of O3 rate in Perpignan}
+		\item{$\mu_a$ = mean of O3 rate in Albi}
+	\end{itemize}
+	
+	\vspace{0.2cm}
+	
+	In this case, we are going to do an ANOVA to test:
+	$H_0:\mu_m=\mu_t=\mu_p=\mu_a$ VS $H_1:\mu_m \neq \mu_t \neq \mu_p \neq \mu_a$
 \end{frame}
 
 \begin{frame}{Example: Rates of O3 in Occitania}
-
-We start by doing a violin plot to compare the number of evaluation of the level of O3 in each city. 
-\begin{figure}
-    \centering
-    \includegraphics[width=5cm]{carplot.pdf}
-    \caption{Violin plot to show the difference between the number of evaluation of 03 in ech city}
-    \label{fig:my_label}
-\end{figure}
+	
+	We start by doing a violin plot to compare the number of evaluation of the level of O3 in each city. 
+	\begin{figure}
+		\centering
+		\includegraphics[width=5cm]{carplot.pdf}
+		\caption{Violin plot to show the difference between the number of evaluation of 03 in ech city}
+		\label{fig:my_label}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{Example: Rates of O3 in Occitania}
-
-As we can see, there's not a significant difference of the number of evaluation of 03 between each city.
-
-Now, we are going make a prognosis on the result of the test using a boxplot.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=5cm]{boxplot.pdf}
-    \caption{ Boxplot of O3 rates in each city}
-    \label{fig:my_label}
-\end{figure}
- 
- We can prognosis that we will reject $H_0$   
+	
+	As we can see, there's not a significant difference of the number of evaluation of 03 between each city.
+	
+	Now, we are going make a prognosis on the result of the test using a boxplot.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=5cm]{boxplot.pdf}
+		\caption{ Boxplot of O3 rates in each city}
+		\label{fig:my_label}
+	\end{figure}
+	
+	We can prognosis that we will reject $H_0$   
 \end{frame}
 
 \begin{frame}{Example: Rates of O3 in Occitania}
-Now we are going to do the ANOVA to make sure of our prognosis
-\begin{figure}
-    \centering
-    \includegraphics[width=8cm]{resultat.pdf}
-    \caption{Results of the ANOVA}
-    \label{fig:my_label}
-\end{figure}
-We obtain F=8.75 > 0.000009, so we will reject $H_0$ and we can say that the levels of 03 differs from one city to another.
+	Now we are going to do the ANOVA to make sure of our prognosis
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{resultat.pdf}
+		\caption{Results of the ANOVA}
+		\label{fig:my_label}
+	\end{figure}
+	We obtain F=8.75 > 0.000009, so we will reject $H_0$ and we can say that the levels of 03 differs from one city to another.
 \end{frame}
-
-
 
 
 
